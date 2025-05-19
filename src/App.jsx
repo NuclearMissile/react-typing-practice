@@ -245,11 +245,7 @@ export default function App() {
                 </button>
             </div>
 
-            {(status === 'started' || status === 'finished') && (
-                <div className="timer">
-                    Time: {formatTime(elapsedTime)}
-                </div>
-            )}
+            <div className="timer">Time: {formatTime(elapsedTime)}</div>
 
             <div
                 className="text-display"
