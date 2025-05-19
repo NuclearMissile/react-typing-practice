@@ -48,7 +48,7 @@ export default function App() {
     const [status, setStatus] = useState('waiting'); // waiting, started, finished
     const [difficulty, setDifficulty] = useState('easy'); // easy, medium, hard
     const [elapsedTime, setElapsedTime] = useState(0);
-    const [wpm, setWpm] = useState(0);
+    const [wpm, setWpm] = useState('?');
     const textDisplayRef = useRef(null);
     const timerRef = useRef(null);
 
@@ -143,7 +143,7 @@ export default function App() {
         setStartTime(null);
         setStatus('waiting');
         setElapsedTime(0);
-        setWpm(wpm);
+        setWpm('?');
         if (textDisplayRef.current) {
             textDisplayRef.current.focus();
         }
@@ -223,56 +223,45 @@ export default function App() {
             <div className="difficulty-selector">
                 <button
                     className={difficulty === 'easy' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('easy')}
-                >
+                    onClick={() => handleDifficultyChange('easy')}>
                     Easy
                 </button>
                 <button
                     className={difficulty === 'medium' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('medium')}
-                >
+                    onClick={() => handleDifficultyChange('medium')}>
                     Medium
                 </button>
                 <button
                     className={difficulty === 'hard' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('hard')}
-                >
+                    onClick={() => handleDifficultyChange('hard')}>
                     Hard
                 </button>
             </div>
-
-            <div className="timer">Time: {formatTime(elapsedTime)}</div>
 
             <div
                 className="text-display"
                 ref={textDisplayRef}
                 tabIndex={0}
-                onKeyDown={handleKeyDown}
-            >
+                onKeyDown={handleKeyDown}>
                 {renderText()}
             </div>
 
-            {status !== 'finished' && (
-                <div className="progress-bar">
-                    <div
-                        className="progress"
-                        style={{width: `${calculateProgress()}%`}}
-                    ></div>
-                </div>
-            )}
+            <div className="progress-bar">
+                <div className="progress" style={{width: `${calculateProgress()}%`}}></div>
+            </div>
 
-            {/* Only display stats panel when game is finished */}
-            {status === 'finished' && (
-                <div className="stats">
-                    <h2>Results</h2>
-                    <p>WPM: <span className="highlight">{wpm}</span></p>
-                </div>
-            )}
-
-            <div className="controls">
-                <button onClick={resetGame} className="reset-btn">
-                    {status === 'finished' ? 'Try Again' : 'Reset'}
-                </button>
+            <div className="section">
+                <ul>
+                    <li>
+                        <p>Time:</p>
+                        <span>{formatTime(elapsedTime)}</span>
+                    </li>
+                    <li>
+                        <p>WPM:</p>
+                        <span>{wpm}</span>
+                    </li>
+                </ul>
+                <button onClick={resetGame} className="reset-btn">Reset</button>
             </div>
         </div>
     )
