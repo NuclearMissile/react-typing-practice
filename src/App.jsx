@@ -108,7 +108,7 @@ export default function App() {
             if (e.key === 'Backspace') {
                 // Handle backspace - remove the last character
                 newInput = userInput.slice(0, -1);
-            } else if (status !== 'finished') {
+            } else if (status !== 'finished' && text.length > userInput.length) {
                 // Add the typed character
                 newInput = userInput + e.key;
             }

@@ -173,11 +173,11 @@
   margin-top: 5px;
 }
 .section ul{
-  padding-inline-start: 0px;
+  padding-inline-start: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px;
+  margin: 0;
   width: calc(100% - 120px);
 }
 
