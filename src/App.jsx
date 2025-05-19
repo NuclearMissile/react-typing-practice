@@ -166,11 +166,7 @@ export default function App() {
             } else if (index === userInput.length) {
                 className = 'next-char';
             }
-            return (
-                <span key={index} className={className}>
-          {char}
-        </span>
-            );
+            return <span key={index} className={className}>{char}</span>;
         });
     };
 
