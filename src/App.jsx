@@ -71,7 +71,7 @@ export default function App() {
         }
 
         return () => clearInterval(timerRef.current);
-    }, [status]);
+    }, [startTime, status]);
 
     // Get random text based on current difficulty
     const getRandomText = () => {
