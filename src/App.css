@@ -152,6 +152,11 @@
   transition: width 0.3s ease;
 }
 
+.progress-finished {
+  height: 100%;
+  background-color: green;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .text-display {

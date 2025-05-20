@@ -243,7 +243,8 @@ export default function App() {
             </div>
 
             <div className="progress-bar">
-                <div className="progress" style={{width: `${calculateProgress()}%`}}></div>
+                <div className={status === 'finished' ? 'progress-finished' : "progress"}
+                     style={{width: `${calculateProgress()}%`}}></div>
             </div>
 
             <div className="section">
