@@ -48,7 +48,7 @@ export default function App() {
     const [status, setStatus] = useState('waiting'); // waiting, started, finished
     const [difficulty, setDifficulty] = useState('easy'); // easy, medium, hard
     const [elapsedTime, setElapsedTime] = useState(0);
-    const [wpm, setWpm] = useState('?');
+    const [wpm, setWpm] = useState(-1);
     const textDisplayRef = useRef(null);
     const timerRef = useRef(null);
 
@@ -143,7 +143,7 @@ export default function App() {
         setStartTime(null);
         setStatus('waiting');
         setElapsedTime(0);
-        setWpm('?');
+        setWpm(-1);
         if (textDisplayRef.current) {
             textDisplayRef.current.focus();
         }
@@ -221,28 +221,24 @@ export default function App() {
                 <a href='https://github.com/NuclearMissile/react-typing-practice'>Typing Practice</a>
             </h2>
             <div className="difficulty-selector">
-                <button
-                    className={difficulty === 'easy' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('easy')}>
+                <button className={difficulty === 'easy' ? 'active' : ''}
+                        onClick={() => handleDifficultyChange('easy')}>
                     Easy
                 </button>
-                <button
-                    className={difficulty === 'medium' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('medium')}>
+                <button className={difficulty === 'medium' ? 'active' : ''}
+                        onClick={() => handleDifficultyChange('medium')}>
                     Medium
                 </button>
-                <button
-                    className={difficulty === 'hard' ? 'active' : ''}
-                    onClick={() => handleDifficultyChange('hard')}>
+                <button className={difficulty === 'hard' ? 'active' : ''}
+                        onClick={() => handleDifficultyChange('hard')}>
                     Hard
                 </button>
             </div>
 
-            <div
-                className="text-display"
-                ref={textDisplayRef}
-                tabIndex={0}
-                onKeyDown={handleKeyDown}>
+            <div className="text-display"
+                 ref={textDisplayRef}
+                 tabIndex={0}
+                 onKeyDown={handleKeyDown}>
                 {renderText()}
             </div>
 
@@ -258,10 +254,12 @@ export default function App() {
                     </li>
                     <li>
                         <p>WPM:</p>
-                        <span>{wpm}</span>
+                        <span>{wpm !== -1 ? wpm : '?'}</span>
                     </li>
                 </ul>
-                <button onClick={resetGame} className="reset-btn">Reset</button>
+                <button onClick={resetGame} className="reset-btn">
+                    {status === 'finished' ? 'Retry' : 'Reset'}
+                </button>
             </div>
         </div>
     )
