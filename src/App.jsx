@@ -254,7 +254,7 @@ export default function App() {
                     </li>
                     <li>
                         <p>WPM:</p>
-                        <span>{wpm !== -1 ? wpm : '?'}</span>
+                        <span>{wpm !== -1 ? wpm : '-'}</span>
                     </li>
                 </ul>
                 <button onClick={resetGame} className="reset-btn">
